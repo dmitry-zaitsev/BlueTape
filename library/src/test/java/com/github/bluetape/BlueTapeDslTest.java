@@ -114,4 +114,26 @@ public class BlueTapeDslTest {
         verify(view).setVisibility(View.GONE);
     }
 
+    @Test
+    public void visible_True() throws Exception {
+        // When
+        BlueTapeDsl
+                .visible(true)
+                .bind(view);
+
+        // Then
+        verify(view).setVisibility(View.VISIBLE);
+    }
+
+    @Test
+    public void visible_False() throws Exception {
+        // When
+        BlueTapeDsl
+                .visible(false)
+                .bind(view);
+
+        // Then
+        verify(view).setVisibility(View.GONE);
+    }
+
 }

@@ -48,6 +48,18 @@ public class BlueTapeDsl {
     }
 
     /**
+     * Shortcut for {@link #visibility(int)} which either sets visibility to {@link View#VISIBLE}
+     * or {@link View#GONE}.
+     */
+    public static BindingFunction visible(boolean visible) {
+        return visibility(
+                visible
+                        ? View.VISIBLE
+                        : View.GONE
+        );
+    }
+
+    /**
      * @param visibility parameter as in {@link View#setVisibility(int)}.
      * @return function which assigns visibility to current {@link View}.
      */
