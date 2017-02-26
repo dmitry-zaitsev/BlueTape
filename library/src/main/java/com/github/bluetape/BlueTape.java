@@ -3,6 +3,9 @@ package com.github.bluetape;
 import android.app.Activity;
 import android.view.View;
 
+/**
+ * Binds data to views.
+ */
 public class BlueTape {
 
     final View view;
@@ -24,8 +27,11 @@ public class BlueTape {
         return new ViewSelector(factory);
     }
 
+    /**
+     * Re-evaluates view bindings. Use it if you want to update values in your views.
+     */
     public void update() {
-
+        factory.create().bind(view);
     }
 
     /**
