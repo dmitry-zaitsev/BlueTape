@@ -66,6 +66,27 @@ public class BlueTapeDslTest {
         inOrder.verify(functionB).bind(subView);
     }
 
+    @Test(expected = ViewNotFoundException.class)
+    public void id_ViewNotFound() throws Exception {
+        // Given
+        int subViewId = 123;
+
+        //noinspection ResourceType
+        given(view.findViewById(subViewId))
+                .willReturn(null);
+
+        // When
+        BlueTapeDsl
+                .id(subViewId,
+                        functionA,
+                        functionB
+                )
+                .bind(view);
+
+        // Then
+        // Expect exception
+    }
+
     @Test
     public void text_String() throws Exception {
         // Given

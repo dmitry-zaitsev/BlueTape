@@ -1,5 +1,6 @@
 package com.github.bluetape;
 
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -25,9 +26,17 @@ public class BlueTapeDsl {
      * @param functions functions which will be executed on sub-view in order of iteration.
      * @return function which binds every given function to the sub-view of current view. Useful
      * when you want to apply binding function to a particular view.
+     * @throws ViewNotFoundException if view with given Android identifier was not found.
      */
     public static BindingFunction id(int id, BindingFunction... functions) {
-        return view -> composite(functions).bind(view.findViewById(id));
+        return view -> {
+            View subView = view.findViewById(id);
+            if (subView == null) {
+                throw new ViewNotFoundException("View with id " + id + " cannot be found");
+            }
+
+            composite(functions).bind(subView);
+        };
     }
 
     /**
