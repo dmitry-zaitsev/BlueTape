@@ -47,4 +47,12 @@ public class BlueTapeDsl {
         return view -> ((TextView) view).setText(text);
     }
 
+    /**
+     * @param visibility parameter as in {@link View#setVisibility(int)}.
+     * @return function which assigns visibility to current {@link View}.
+     */
+    public static BindingFunction visibility(int visibility) {
+        return view -> view.setVisibility(visibility);
+    }
+
 }

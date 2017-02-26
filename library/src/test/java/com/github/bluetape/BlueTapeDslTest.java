@@ -103,4 +103,15 @@ public class BlueTapeDslTest {
         verify(textView).setText(expectedText);
     }
 
+    @Test
+    public void visibility() throws Exception {
+        // When
+        BlueTapeDsl
+                .visibility(View.GONE)
+                .bind(view);
+
+        // Then
+        verify(view).setVisibility(View.GONE);
+    }
+
 }
