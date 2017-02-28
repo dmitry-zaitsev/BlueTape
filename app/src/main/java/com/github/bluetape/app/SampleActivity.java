@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.github.bluetape.BindingFunction;
+import com.github.bluetape.function.BindingFunction;
 import com.github.bluetape.BlueTape;
 
 import static com.github.bluetape.BlueTapeDsl.composite;

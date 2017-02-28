@@ -3,7 +3,9 @@ package com.github.bluetape;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.bluetape.annotations.Visibility;
+import com.github.bluetape.annotation.Visibility;
+import com.github.bluetape.exception.ViewNotFoundException;
+import com.github.bluetape.function.BindingFunction;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;

@@ -3,6 +3,8 @@ package com.github.bluetape;
 import android.app.Activity;
 import android.view.View;
 
+import com.github.bluetape.function.BindingFunction;
+
 /**
  * Binds data to views.
  */

@@ -1,4 +1,4 @@
-package com.github.bluetape;
+package com.github.bluetape.exception;
 
 /**
  * Thrown when view cannot be found in layout.

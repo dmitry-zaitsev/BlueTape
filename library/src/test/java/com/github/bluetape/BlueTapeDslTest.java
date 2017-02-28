@@ -3,6 +3,9 @@ package com.github.bluetape;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.bluetape.exception.ViewNotFoundException;
+import com.github.bluetape.function.BindingFunction;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;

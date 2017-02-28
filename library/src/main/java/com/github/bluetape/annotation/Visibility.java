@@ -1,4 +1,4 @@
-package com.github.bluetape.annotations;
+package com.github.bluetape.annotation;
 
 import android.support.annotation.IntDef;
 
