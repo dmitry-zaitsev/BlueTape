@@ -1,5 +1,6 @@
 package com.github.bluetape;
 
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.TextView;
@@ -56,6 +57,14 @@ public class BlueTapeDsl {
     }
 
     /**
+     * @return function which assigns text resource to current {@link TextView}.
+     * @throws ClassCastException if current view is not a {@link TextView}.
+     */
+    public static BindingFunction textResource(@StringRes int stringId) {
+        return view -> ((TextView) view).setText(stringId);
+    }
+
+    /**
      * Shortcut for {@link #visibility(int)} which either sets visibility to {@link View#VISIBLE}
      * or {@link View#GONE}.
      */
@@ -77,6 +86,7 @@ public class BlueTapeDsl {
 
     /**
      * @return function which checks or un-checks {@link android.widget.Checkable} view.
+     * * @throws ClassCastException if current view is not a {@link Checkable}.
      */
     public static BindingFunction checked(boolean checked) {
         return view -> ((Checkable) view).setChecked(checked);

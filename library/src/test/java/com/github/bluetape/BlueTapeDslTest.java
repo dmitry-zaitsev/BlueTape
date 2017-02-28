@@ -1,5 +1,6 @@
 package com.github.bluetape;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class BlueTapeDslTest {
 
+    @Mock
+    Context context;
     @Mock
     View view;
     @Mock
@@ -97,7 +100,6 @@ public class BlueTapeDslTest {
         TextView textView = mock(TextView.class);
         String expectedText = "expected";
 
-
         // When
         BlueTapeDsl
                 .text(expectedText)
@@ -105,6 +107,21 @@ public class BlueTapeDslTest {
 
         // Then
         verify(textView).setText(expectedText);
+    }
+
+    @Test
+    public void text_Resource() throws Exception {
+        // Given
+        TextView textView = mock(TextView.class);
+        int expectedResource = android.R.string.cancel;
+
+        // When
+        BlueTapeDsl
+                .textResource(expectedResource)
+                .bind(textView);
+
+        // Then
+        verify(textView).setText(expectedResource);
     }
 
     @Test
