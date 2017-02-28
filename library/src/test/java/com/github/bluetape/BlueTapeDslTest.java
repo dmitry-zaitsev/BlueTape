@@ -1,6 +1,7 @@
 package com.github.bluetape;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.github.bluetape.exception.ViewNotFoundException;
@@ -137,6 +138,20 @@ public class BlueTapeDslTest {
 
         // Then
         verify(view).setVisibility(View.GONE);
+    }
+
+    @Test
+    public void checked() throws Exception {
+        // Given
+        CheckBox checkBox = mock(CheckBox.class);
+
+        // When
+        BlueTapeDsl
+                .checked(true)
+                .bind(checkBox);
+
+        // Then
+        verify(checkBox).setChecked(true);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.github.bluetape;
 
 import android.view.View;
+import android.widget.Checkable;
 import android.widget.TextView;
 
 import com.github.bluetape.annotation.Visibility;
@@ -72,6 +73,13 @@ public class BlueTapeDsl {
      */
     public static BindingFunction visibility(@Visibility int visibility) {
         return view -> view.setVisibility(visibility);
+    }
+
+    /**
+     * @return function which checks or un-checks {@link android.widget.Checkable} view.
+     */
+    public static BindingFunction checked(boolean checked) {
+        return view -> ((Checkable) view).setChecked(checked);
     }
 
 }
