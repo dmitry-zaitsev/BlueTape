@@ -97,7 +97,7 @@ public class BlueTapeDslTest {
     }
 
     @Test
-    public void text_String() throws Exception {
+    public void text() throws Exception {
         // Given
         TextView textView = mock(TextView.class);
         String expectedText = "expected";
@@ -112,7 +112,7 @@ public class BlueTapeDslTest {
     }
 
     @Test
-    public void text_Resource() throws Exception {
+    public void textResource() throws Exception {
         // Given
         TextView textView = mock(TextView.class);
         int expectedResource = android.R.string.cancel;
@@ -186,6 +186,21 @@ public class BlueTapeDslTest {
 
         // Then
         verify(imageView).setImageDrawable(drawable);
+    }
+
+    @Test
+    public void imageResource() throws Exception {
+        // Given
+        ImageView imageView = mock(ImageView.class);
+        int imageResource = android.R.drawable.ic_menu_report_image;
+
+        // When
+        BlueTapeDsl
+                .imageResource(imageResource)
+                .bind(imageView);
+
+        // Then
+        verify(imageView).setImageResource(imageResource);
     }
 
 }

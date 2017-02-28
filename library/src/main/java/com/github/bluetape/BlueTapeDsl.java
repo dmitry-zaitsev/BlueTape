@@ -1,6 +1,7 @@
 package com.github.bluetape;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Checkable;
@@ -100,6 +101,14 @@ public class BlueTapeDsl {
      */
     public static BindingFunction imageDrawable(Drawable drawable) {
         return view -> ((ImageView) view).setImageDrawable(drawable);
+    }
+
+    /**
+     * @return function which assigns {@link Drawable} resource to an {@link ImageView}.
+     * @throws ClassCastException if current view is not an {@link ImageView}.
+     */
+    public static BindingFunction imageResource(@DrawableRes int drawableId) {
+        return view -> ((ImageView) view).setImageResource(drawableId);
     }
 
 }
