@@ -1,6 +1,7 @@
 package com.github.bluetape;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
@@ -201,6 +202,21 @@ public class BlueTapeDslTest {
 
         // Then
         verify(imageView).setImageResource(imageResource);
+    }
+
+    @Test
+    public void imageBitmap() throws Exception {
+        // Given
+        ImageView imageView = mock(ImageView.class);
+        Bitmap bitmap = mock(Bitmap.class);
+
+        // When
+        BlueTapeDsl
+                .imageBitmap(bitmap)
+                .bind(imageView);
+
+        // Then
+        verify(imageView).setImageBitmap(bitmap);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.github.bluetape;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -109,6 +110,14 @@ public class BlueTapeDsl {
      */
     public static BindingFunction imageResource(@DrawableRes int drawableId) {
         return view -> ((ImageView) view).setImageResource(drawableId);
+    }
+
+    /**
+     * @return function which assigns {@link Bitmap} to an {@link ImageView}.
+     * @throws ClassCastException if current view is not an {@link ImageView}.
+     */
+    public static BindingFunction imageBitmap(Bitmap bitmap) {
+        return view -> ((ImageView) view).setImageBitmap(bitmap);
     }
 
 }
