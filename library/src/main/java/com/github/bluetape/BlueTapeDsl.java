@@ -3,6 +3,11 @@ package com.github.bluetape;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.bluetape.annotations.Visibility;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 /**
  * Most commonly used binding functions.
  */
@@ -54,8 +59,8 @@ public class BlueTapeDsl {
     public static BindingFunction visible(boolean visible) {
         return visibility(
                 visible
-                        ? View.VISIBLE
-                        : View.GONE
+                        ? VISIBLE
+                        : GONE
         );
     }
 
@@ -63,7 +68,7 @@ public class BlueTapeDsl {
      * @param visibility parameter as in {@link View#setVisibility(int)}.
      * @return function which assigns visibility to current {@link View}.
      */
-    public static BindingFunction visibility(int visibility) {
+    public static BindingFunction visibility(@Visibility int visibility) {
         return view -> view.setVisibility(visibility);
     }
 
