@@ -28,13 +28,8 @@ public class SampleActivity extends AppCompatActivity {
         BlueTape blueTape = BlueTape
                 .with(() -> composite(
                         id(R.id.text,
-                                text(text)
-                        ),
-                        id(R.id.container,
-                                id(R.id.text,
-                                        text("Inner"),
-                                        textColor(Color.RED)
-                                )
+                                text(text),
+                                textColor(Color.RED)
                         )
                 ))
                 .into(this);
