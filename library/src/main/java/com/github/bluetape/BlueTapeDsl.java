@@ -1,8 +1,10 @@
 package com.github.bluetape;
 
+import android.graphics.drawable.Drawable;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Checkable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.bluetape.annotation.Visibility;
@@ -85,11 +87,19 @@ public class BlueTapeDsl {
     }
 
     /**
-     * @return function which checks or un-checks {@link android.widget.Checkable} view.
-     * * @throws ClassCastException if current view is not a {@link Checkable}.
+     * @return function which checks or un-checks {@link Checkable} view.
+     * @throws ClassCastException if current view is not a {@link Checkable}.
      */
     public static BindingFunction checked(boolean checked) {
         return view -> ((Checkable) view).setChecked(checked);
+    }
+
+    /**
+     * @return function which assigns {@link Drawable} to an {@link ImageView}.
+     * @throws ClassCastException if current view is not an {@link ImageView}.
+     */
+    public static BindingFunction imageDrawable(Drawable drawable) {
+        return view -> ((ImageView) view).setImageDrawable(drawable);
     }
 
 }

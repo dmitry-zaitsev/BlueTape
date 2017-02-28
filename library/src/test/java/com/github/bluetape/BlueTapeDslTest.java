@@ -1,8 +1,10 @@
 package com.github.bluetape;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.bluetape.exception.ViewNotFoundException;
@@ -169,6 +171,21 @@ public class BlueTapeDslTest {
 
         // Then
         verify(checkBox).setChecked(true);
+    }
+
+    @Test
+    public void imageDrawable() throws Exception {
+        // Given
+        ImageView imageView = mock(ImageView.class);
+        Drawable drawable = mock(Drawable.class);
+
+        // When
+        BlueTapeDsl
+                .imageDrawable(drawable)
+                .bind(imageView);
+
+        // Then
+        verify(imageView).setImageDrawable(drawable);
     }
 
 }
