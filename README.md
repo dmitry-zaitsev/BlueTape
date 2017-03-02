@@ -45,6 +45,6 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.dmitry-zaitsev:BlueTape:alpha-1'
+  compile 'com.github.dmitry-zaitsev:BlueTape:1.0.0'
 }
 ```
