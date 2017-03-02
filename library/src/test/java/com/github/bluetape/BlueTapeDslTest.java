@@ -219,4 +219,18 @@ public class BlueTapeDslTest {
         verify(imageView).setImageBitmap(bitmap);
     }
 
+    @SuppressWarnings("deprecation")
+    @Test
+    public void backgroundDrawable() throws Exception {
+        // Given
+        Drawable drawable = mock(Drawable.class);
+
+        // When
+        BlueTapeDsl
+                .backgroundDrawable(drawable)
+                .bind(view);
+
+        // Then
+        verify(view).setBackgroundDrawable(drawable);
+    }
 }

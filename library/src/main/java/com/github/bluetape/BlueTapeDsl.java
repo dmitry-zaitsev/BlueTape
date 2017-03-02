@@ -120,4 +120,12 @@ public class BlueTapeDsl {
         return view -> ((ImageView) view).setImageBitmap(bitmap);
     }
 
+    /**
+     * @return function which assigns {@link Drawable} as {@link View} background.
+     */
+    @SuppressWarnings("deprecation")
+    public static BindingFunction backgroundDrawable(Drawable drawable) {
+        return view -> view.setBackgroundDrawable(drawable);
+    }
+
 }
