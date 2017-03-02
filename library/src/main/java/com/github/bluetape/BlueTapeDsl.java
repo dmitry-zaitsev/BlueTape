@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -168,6 +169,15 @@ public class BlueTapeDsl {
      */
     public static BindingFunction onTouch(@Nullable View.OnTouchListener listener) {
         return view -> view.setOnTouchListener(listener);
+    }
+
+    /**
+     * @return function which assigns {@link android.widget.CompoundButton.OnCheckedChangeListener}
+     * to {@link CompoundButton}.
+     * @throws ClassCastException if current view is not a {@link CompoundButton}.
+     */
+    public static BindingFunction onToggle(@Nullable CompoundButton.OnCheckedChangeListener listener) {
+        return view -> ((CompoundButton) view).setOnCheckedChangeListener(listener);
     }
 
 }

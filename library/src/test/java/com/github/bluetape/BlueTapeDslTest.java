@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -305,4 +306,18 @@ public class BlueTapeDslTest {
         verify(view).setOnTouchListener(listener);
     }
 
+    @Test
+    public void onToggle() throws Exception {
+        // Given
+        CompoundButton compoundButton = mock(CompoundButton.class);
+        CompoundButton.OnCheckedChangeListener listener = mock(CompoundButton.OnCheckedChangeListener.class);
+
+        // When
+        BlueTapeDsl
+                .onToggle(listener)
+                .bind(compoundButton);
+
+        // Then
+        verify(compoundButton).setOnCheckedChangeListener(listener);
+    }
 }
