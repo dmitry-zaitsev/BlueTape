@@ -13,7 +13,7 @@ Data binding library for Android which is:
 
 Here is a simple yet common example of how to use `BlueTape`:
 
-```
+```java
 BlueTape blueTape = BlueTape
   .with(() -> composite(                    // More about composite() later
           id(R.id.text,                     // id() takes id of the view and list of functions which will bind data to this view
@@ -29,7 +29,7 @@ BlueTape blueTape = BlueTape
 
 Now, every time data is updated we can trigger `BlueTape` to update all data in the views:
 
-```
+```java
 someVariable = "New value";
 
 blueTape.update();   // This will re-bind all views which we declared before
@@ -39,7 +39,7 @@ blueTape.update();   // This will re-bind all views which we declared before
 
 Gradle:
 
-```
+```groovy
 repositories {
   maven { url 'https://jitpack.io' }
 }
