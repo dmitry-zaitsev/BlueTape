@@ -147,10 +147,19 @@ public class BlueTapeDsl {
     }
 
     /**
-     * @return function which assigns click listener to {@link View}.
+     * @return function which assigns click listener to {@link View}. {@code null} removes the
+     * listener.
      */
     public static BindingFunction onClick(@Nullable View.OnClickListener listener) {
         return view -> view.setOnClickListener(listener);
+    }
+
+    /**
+     * @return function which assigns long-click listener to {@link View}. {@code null} removes the
+     * listener.
+     */
+    public static BindingFunction onLongClick(@Nullable View.OnLongClickListener listener) {
+        return view -> view.setOnLongClickListener(listener);
     }
 
 }

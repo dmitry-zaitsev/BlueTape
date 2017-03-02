@@ -276,4 +276,19 @@ public class BlueTapeDslTest {
         // Then
         verify(view).setOnClickListener(listener);
     }
+
+    @Test
+    public void onLongClick() throws Exception {
+        // Given
+        View.OnLongClickListener listener = mock(View.OnLongClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onLongClick(listener)
+                .bind(view);
+
+        // Then
+        verify(view).setOnLongClickListener(listener);
+    }
+
 }
