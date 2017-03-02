@@ -2,14 +2,18 @@ package com.github.bluetape;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
+import com.github.bluetape.function.binder.TextChangedBindingFunction;
+import com.github.bluetape.function.listener.OnTextChangedListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +21,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static junit.framework.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
@@ -128,6 +133,20 @@ public class BlueTapeDslTest {
     }
 
     @Test
+    public void textColor() throws Exception {
+        // Given
+        TextView textView = mock(TextView.class);
+
+        // When
+        BlueTapeDsl
+                .textColor(Color.RED)
+                .bind(textView);
+
+        // Then
+        verify(textView).setTextColor(Color.RED);
+    }
+
+    @Test
     public void visibility() throws Exception {
         // When
         BlueTapeDsl
@@ -217,6 +236,105 @@ public class BlueTapeDslTest {
 
         // Then
         verify(imageView).setImageBitmap(bitmap);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Test
+    public void backgroundDrawable() throws Exception {
+        // Given
+        Drawable drawable = mock(Drawable.class);
+
+        // When
+        BlueTapeDsl
+                .backgroundDrawable(drawable)
+                .bind(view);
+
+        // Then
+        verify(view).setBackgroundDrawable(drawable);
+    }
+
+    @Test
+    public void backgroundResource() throws Exception {
+        // Given
+        int imageResource = android.R.drawable.ic_menu_report_image;
+
+        // When
+        BlueTapeDsl
+                .backgroundResource(imageResource)
+                .bind(view);
+
+        // Then
+        verify(view).setBackgroundResource(imageResource);
+    }
+
+    @Test
+    public void onClick() throws Exception {
+        // Given
+        View.OnClickListener listener = mock(View.OnClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onClick(listener)
+                .bind(view);
+
+        // Then
+        verify(view).setOnClickListener(listener);
+    }
+
+    @Test
+    public void onLongClick() throws Exception {
+        // Given
+        View.OnLongClickListener listener = mock(View.OnLongClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onLongClick(listener)
+                .bind(view);
+
+        // Then
+        verify(view).setOnLongClickListener(listener);
+    }
+
+    @Test
+    public void onTouch() throws Exception {
+        // Given
+        View.OnTouchListener listener = mock(View.OnTouchListener.class);
+
+        // When
+        BlueTapeDsl
+                .onTouch(listener)
+                .bind(view);
+
+        // Then
+        verify(view).setOnTouchListener(listener);
+    }
+
+    @Test
+    public void onToggle() throws Exception {
+        // Given
+        CompoundButton compoundButton = mock(CompoundButton.class);
+        CompoundButton.OnCheckedChangeListener listener = mock(CompoundButton.OnCheckedChangeListener.class);
+
+        // When
+        BlueTapeDsl
+                .onToggle(listener)
+                .bind(compoundButton);
+
+        // Then
+        verify(compoundButton).setOnCheckedChangeListener(listener);
+    }
+
+    @Test
+    public void onTextChanged() throws Exception {
+        // Given
+        OnTextChangedListener listener = mock(OnTextChangedListener.class);
+
+        // When
+        BindingFunction bindingFunction = BlueTapeDsl
+                .onTextChanged(listener);
+
+        // Then
+        assertTrue(bindingFunction instanceof TextChangedBindingFunction);
     }
 
 }
