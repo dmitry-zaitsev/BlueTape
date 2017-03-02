@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
+import com.github.bluetape.function.binder.TextChangedBindingFunction;
+import com.github.bluetape.function.listener.OnTextChangedListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static junit.framework.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
@@ -320,4 +323,18 @@ public class BlueTapeDslTest {
         // Then
         verify(compoundButton).setOnCheckedChangeListener(listener);
     }
+
+    @Test
+    public void onTextChanged() throws Exception {
+        // Given
+        OnTextChangedListener listener = mock(OnTextChangedListener.class);
+
+        // When
+        BindingFunction bindingFunction = BlueTapeDsl
+                .onTextChanged(listener);
+
+        // Then
+        assertTrue(bindingFunction instanceof TextChangedBindingFunction);
+    }
+
 }

@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.github.bluetape.annotation.Visibility;
 import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
+import com.github.bluetape.function.binder.TextChangedBindingFunction;
+import com.github.bluetape.function.listener.OnTextChangedListener;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -178,6 +180,15 @@ public class BlueTapeDsl {
      */
     public static BindingFunction onToggle(@Nullable CompoundButton.OnCheckedChangeListener listener) {
         return view -> ((CompoundButton) view).setOnCheckedChangeListener(listener);
+    }
+
+    /**
+     * @return function which assigns listener which is called after each time text in {@link TextView}
+     * is changed by user. {@code null} will remove the listener.
+     * @throws ClassCastException if current view is not a {@link TextView}.
+     */
+    public static BindingFunction onTextChanged(@Nullable OnTextChangedListener listener) {
+        return TextChangedBindingFunction.create(listener);
     }
 
 }
