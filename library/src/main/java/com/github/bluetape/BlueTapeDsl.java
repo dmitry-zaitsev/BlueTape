@@ -2,6 +2,7 @@ package com.github.bluetape;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.view.View;
@@ -66,6 +67,14 @@ public class BlueTapeDsl {
      */
     public static BindingFunction textResource(@StringRes int stringId) {
         return view -> ((TextView) view).setText(stringId);
+    }
+
+    /**
+     * @return function which assigns text color (not resource!) to current {@link TextView}.
+     * @throws ClassCastException if current view is not a {@link TextView}.
+     */
+    public static BindingFunction textColor(@ColorInt int color) {
+        return view -> ((TextView) view).setTextColor(color);
     }
 
     /**

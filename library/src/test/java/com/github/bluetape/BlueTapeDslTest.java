@@ -2,6 +2,7 @@ package com.github.bluetape;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
@@ -125,6 +126,20 @@ public class BlueTapeDslTest {
 
         // Then
         verify(textView).setText(expectedResource);
+    }
+
+    @Test
+    public void textColor() throws Exception {
+        // Given
+        TextView textView = mock(TextView.class);
+
+        // When
+        BlueTapeDsl
+                .textColor(Color.RED)
+                .bind(textView);
+
+        // Then
+        verify(textView).setTextColor(Color.RED);
     }
 
     @Test
