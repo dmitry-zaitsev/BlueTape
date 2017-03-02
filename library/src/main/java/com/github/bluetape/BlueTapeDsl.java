@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Checkable;
@@ -27,7 +29,7 @@ public class BlueTapeDsl {
      * @return function which binds every given function to the same view. Useful when you
      * want to use several binding functions for the same view at once.
      */
-    public static BindingFunction composite(BindingFunction... functions) {
+    public static BindingFunction composite(@NonNull BindingFunction... functions) {
         return view -> {
             for (BindingFunction function : functions) {
                 function.bind(view);
@@ -42,7 +44,7 @@ public class BlueTapeDsl {
      * when you want to apply binding function to a particular view.
      * @throws ViewNotFoundException if view with given Android identifier was not found.
      */
-    public static BindingFunction id(int id, BindingFunction... functions) {
+    public static BindingFunction id(int id, @NonNull BindingFunction... functions) {
         return view -> {
             View subView = view.findViewById(id);
             if (subView == null) {
@@ -109,7 +111,7 @@ public class BlueTapeDsl {
      * @return function which assigns {@link Drawable} to an {@link ImageView}.
      * @throws ClassCastException if current view is not an {@link ImageView}.
      */
-    public static BindingFunction imageDrawable(Drawable drawable) {
+    public static BindingFunction imageDrawable(@Nullable Drawable drawable) {
         return view -> ((ImageView) view).setImageDrawable(drawable);
     }
 
@@ -125,7 +127,7 @@ public class BlueTapeDsl {
      * @return function which assigns {@link Bitmap} to an {@link ImageView}.
      * @throws ClassCastException if current view is not an {@link ImageView}.
      */
-    public static BindingFunction imageBitmap(Bitmap bitmap) {
+    public static BindingFunction imageBitmap(@Nullable Bitmap bitmap) {
         return view -> ((ImageView) view).setImageBitmap(bitmap);
     }
 
@@ -133,7 +135,7 @@ public class BlueTapeDsl {
      * @return function which assigns {@link Drawable} as {@link View} background.
      */
     @SuppressWarnings("deprecation")
-    public static BindingFunction backgroundDrawable(Drawable drawable) {
+    public static BindingFunction backgroundDrawable(@Nullable Drawable drawable) {
         return view -> view.setBackgroundDrawable(drawable);
     }
 
@@ -142,6 +144,13 @@ public class BlueTapeDsl {
      */
     public static BindingFunction backgroundResource(@DrawableRes int drawableId) {
         return view -> view.setBackgroundResource(drawableId);
+    }
+
+    /**
+     * @return function which assigns click listener to {@link View}.
+     */
+    public static BindingFunction onClick(@Nullable View.OnClickListener listener) {
+        return view -> view.setOnClickListener(listener);
     }
 
 }

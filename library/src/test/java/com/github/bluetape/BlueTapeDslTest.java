@@ -263,4 +263,17 @@ public class BlueTapeDslTest {
         verify(view).setBackgroundResource(imageResource);
     }
 
+    @Test
+    public void onClick() throws Exception {
+        // Given
+        View.OnClickListener listener = mock(View.OnClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onClick(listener)
+                .bind(view);
+
+        // Then
+        verify(view).setOnClickListener(listener);
+    }
 }
