@@ -162,4 +162,12 @@ public class BlueTapeDsl {
         return view -> view.setOnLongClickListener(listener);
     }
 
+    /**
+     * @return function which assigns {@link android.view.View.OnTouchListener} to {@link View}.
+     * {@code null} removes the listener.
+     */
+    public static BindingFunction onTouch(@Nullable View.OnTouchListener listener) {
+        return view -> view.setOnTouchListener(listener);
+    }
+
 }
