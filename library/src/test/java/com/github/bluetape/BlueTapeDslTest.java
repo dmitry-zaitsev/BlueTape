@@ -233,4 +233,19 @@ public class BlueTapeDslTest {
         // Then
         verify(view).setBackgroundDrawable(drawable);
     }
+
+    @Test
+    public void backgroundResource() throws Exception {
+        // Given
+        int imageResource = android.R.drawable.ic_menu_report_image;
+
+        // When
+        BlueTapeDsl
+                .backgroundResource(imageResource)
+                .bind(view);
+
+        // Then
+        verify(view).setBackgroundResource(imageResource);
+    }
+
 }

@@ -128,4 +128,11 @@ public class BlueTapeDsl {
         return view -> view.setBackgroundDrawable(drawable);
     }
 
+    /**
+     * @return function which assigns {@link Drawable} resource to {@link View} background.
+     */
+    public static BindingFunction backgroundResource(@DrawableRes int drawableId) {
+        return view -> view.setBackgroundResource(drawableId);
+    }
+
 }
