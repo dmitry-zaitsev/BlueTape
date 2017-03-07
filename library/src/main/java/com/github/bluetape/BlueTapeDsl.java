@@ -211,4 +211,11 @@ public class BlueTapeDsl {
         return TextChangedBindingFunction.create(listener);
     }
 
+    /**
+     * @return function which does nothing.
+     */
+    public static BindingFunction pass() {
+        return view -> {};
+    }
+
 }

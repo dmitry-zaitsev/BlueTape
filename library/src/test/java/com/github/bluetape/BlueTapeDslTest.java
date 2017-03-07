@@ -28,6 +28,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlueTapeDslTest {
@@ -380,4 +381,14 @@ public class BlueTapeDslTest {
         assertTrue(bindingFunction instanceof TextChangedBindingFunction);
     }
 
+    @Test
+    public void pass() throws Exception {
+        // When
+        BlueTapeDsl
+                .pass()
+                .bind(view);
+
+        // Then
+        verifyZeroInteractions(view);
+    }
 }
