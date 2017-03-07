@@ -180,6 +180,17 @@ public class BlueTapeDslTest {
     }
 
     @Test
+    public void enabled() throws Exception {
+        // When
+        BlueTapeDsl
+                .enabled(true)
+                .bind(view);
+
+        // Then
+        verify(view).setEnabled(true);
+    }
+
+    @Test
     public void checked() throws Exception {
         // Given
         CheckBox checkBox = mock(CheckBox.class);

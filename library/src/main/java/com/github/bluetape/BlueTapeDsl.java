@@ -103,6 +103,14 @@ public class BlueTapeDsl {
     }
 
     /**
+     * @param enabled parameter as in {@link View#setEnabled(boolean)}.
+     * @return function which enables or disables current {@link View}.
+     */
+    public static BindingFunction enabled(boolean enabled) {
+        return view -> view.setEnabled(enabled);
+    }
+
+    /**
      * @return function which checks or un-checks {@link Checkable} view.
      * @throws ClassCastException if current view is not a {@link Checkable}.
      */
