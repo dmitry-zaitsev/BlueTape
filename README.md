@@ -25,6 +25,8 @@ BlueTape blueTape = BlueTape
           )
   ))
   .into(this);                              // "this" might be either an Activity or a View
+
+blueTape.update();                          // applies default values
 ```
 
 Now, every time data is updated we can trigger `BlueTape` to update all data in the views:
