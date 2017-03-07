@@ -18,6 +18,7 @@ import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
 import com.github.bluetape.function.binder.TextChangedBindingFunction;
 import com.github.bluetape.function.listener.OnTextChangedListener;
+import com.github.bluetape.function.listener.ShortenedOnClickListener;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -163,6 +164,17 @@ public class BlueTapeDsl {
      */
     public static BindingFunction onClick(@Nullable View.OnClickListener listener) {
         return view -> view.setOnClickListener(listener);
+    }
+
+    /**
+     * Same as {@link #onClick(View.OnClickListener)}, but takes {@link ShortenedOnClickListener}.
+     */
+    public static BindingFunction onClick(@Nullable ShortenedOnClickListener listener) {
+        return onClick(
+                listener != null
+                        ? v -> listener.onClick()
+                        : null
+        );
     }
 
     /**

@@ -14,9 +14,11 @@ import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
 import com.github.bluetape.function.binder.TextChangedBindingFunction;
 import com.github.bluetape.function.listener.OnTextChangedListener;
+import com.github.bluetape.function.listener.ShortenedOnClickListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -290,6 +292,36 @@ public class BlueTapeDslTest {
 
         // Then
         verify(view).setOnClickListener(listener);
+    }
+
+    @Test
+    public void onClick_Shortened() throws Exception {
+        // Given
+        ShortenedOnClickListener listener = mock(ShortenedOnClickListener.class);
+
+        ArgumentCaptor<View.OnClickListener> listenerCaptor = ArgumentCaptor.forClass(View.OnClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onClick(listener)
+                .bind(view);
+
+        verify(view).setOnClickListener(listenerCaptor.capture());
+        listenerCaptor.getValue().onClick(view);
+
+        // Then
+        verify(listener).onClick();
+    }
+
+    @Test
+    public void onClick_Shortened_Clear() throws Exception {
+        // When
+        BlueTapeDsl
+                .onClick((ShortenedOnClickListener) null)
+                .bind(view);
+
+        // Then
+        verify(view).setOnClickListener(null);
     }
 
     @Test
