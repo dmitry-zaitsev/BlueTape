@@ -18,6 +18,7 @@ import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
 import com.github.bluetape.function.binder.TextChangedBindingFunction;
 import com.github.bluetape.function.listener.OnTextChangedListener;
+import com.github.bluetape.function.listener.ShortenedOnClickListener;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -103,6 +104,14 @@ public class BlueTapeDsl {
     }
 
     /**
+     * @param enabled parameter as in {@link View#setEnabled(boolean)}.
+     * @return function which enables or disables current {@link View}.
+     */
+    public static BindingFunction enabled(boolean enabled) {
+        return view -> view.setEnabled(enabled);
+    }
+
+    /**
      * @return function which checks or un-checks {@link Checkable} view.
      * @throws ClassCastException if current view is not a {@link Checkable}.
      */
@@ -158,6 +167,17 @@ public class BlueTapeDsl {
     }
 
     /**
+     * Same as {@link #onClick(View.OnClickListener)}, but takes {@link ShortenedOnClickListener}.
+     */
+    public static BindingFunction onClick(@Nullable ShortenedOnClickListener listener) {
+        return onClick(
+                listener != null
+                        ? v -> listener.onClick()
+                        : null
+        );
+    }
+
+    /**
      * @return function which assigns long-click listener to {@link View}. {@code null} removes the
      * listener.
      */
@@ -189,6 +209,13 @@ public class BlueTapeDsl {
      */
     public static BindingFunction onTextChanged(@Nullable OnTextChangedListener listener) {
         return TextChangedBindingFunction.create(listener);
+    }
+
+    /**
+     * @return function which does nothing.
+     */
+    public static BindingFunction pass() {
+        return view -> {};
     }
 
 }

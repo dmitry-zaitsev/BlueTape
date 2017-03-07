@@ -14,9 +14,11 @@ import com.github.bluetape.exception.ViewNotFoundException;
 import com.github.bluetape.function.BindingFunction;
 import com.github.bluetape.function.binder.TextChangedBindingFunction;
 import com.github.bluetape.function.listener.OnTextChangedListener;
+import com.github.bluetape.function.listener.ShortenedOnClickListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -26,6 +28,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlueTapeDslTest {
@@ -180,6 +183,17 @@ public class BlueTapeDslTest {
     }
 
     @Test
+    public void enabled() throws Exception {
+        // When
+        BlueTapeDsl
+                .enabled(true)
+                .bind(view);
+
+        // Then
+        verify(view).setEnabled(true);
+    }
+
+    @Test
     public void checked() throws Exception {
         // Given
         CheckBox checkBox = mock(CheckBox.class);
@@ -282,6 +296,36 @@ public class BlueTapeDslTest {
     }
 
     @Test
+    public void onClick_Shortened() throws Exception {
+        // Given
+        ShortenedOnClickListener listener = mock(ShortenedOnClickListener.class);
+
+        ArgumentCaptor<View.OnClickListener> listenerCaptor = ArgumentCaptor.forClass(View.OnClickListener.class);
+
+        // When
+        BlueTapeDsl
+                .onClick(listener)
+                .bind(view);
+
+        verify(view).setOnClickListener(listenerCaptor.capture());
+        listenerCaptor.getValue().onClick(view);
+
+        // Then
+        verify(listener).onClick();
+    }
+
+    @Test
+    public void onClick_Shortened_Clear() throws Exception {
+        // When
+        BlueTapeDsl
+                .onClick((ShortenedOnClickListener) null)
+                .bind(view);
+
+        // Then
+        verify(view).setOnClickListener(null);
+    }
+
+    @Test
     public void onLongClick() throws Exception {
         // Given
         View.OnLongClickListener listener = mock(View.OnLongClickListener.class);
@@ -337,4 +381,14 @@ public class BlueTapeDslTest {
         assertTrue(bindingFunction instanceof TextChangedBindingFunction);
     }
 
+    @Test
+    public void pass() throws Exception {
+        // When
+        BlueTapeDsl
+                .pass()
+                .bind(view);
+
+        // Then
+        verifyZeroInteractions(view);
+    }
 }
