@@ -16,7 +16,8 @@ public class SampleActivity extends AppCompatActivity {
 
     private String text;
 
-    public static BindingFunction textColor(int color) {
+    // You can easily define your own custom attributes this way
+    public static BindingFunction customAttribute(int color) {
         return view -> ((TextView) view).setTextColor(color);
     }
 
@@ -29,7 +30,7 @@ public class SampleActivity extends AppCompatActivity {
                 .with(() -> composite(
                         id(R.id.text,
                                 text(text),
-                                textColor(Color.RED)
+                                customAttribute(Color.RED)
                         )
                 ))
                 .into(this);
